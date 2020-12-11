@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+
 #imports
 import sqlite3
 import random
@@ -77,13 +78,23 @@ def update_all_positions():
         new_pos_x = random.randint(-5,5)
         new_pos_y = random.randint(-5,5)
         update_position(i, new_pos_x, new_pos_y)
+        # def update interaction table
 
-#delete_table("people") #uncomment this line if you already created the table
+# Update interactions table
+'''
+for i in range(1,100):
+    if p1_x == p2_x and p1_y == p2_y:
+        check if someone has 1/2
+        if yes => other one is 1
+'''
+
+#delete_table("people")
 create_database(100)
+get_all_people(10)
 
 try:
     while(True):
         update_all_positions()
-except KeyboardInterrupt: # CTLR-C to interrupt process
+except KeyboardInterrupt:
     pass
 
