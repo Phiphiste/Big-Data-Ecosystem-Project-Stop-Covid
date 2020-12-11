@@ -25,6 +25,10 @@ This schema is possible thanks a **data streaming pipeline made with Kafka made 
 
 ## Set up
 
+- Verify you have JRE on your computer, if not:
+```
+sudo apt install default-jre
+```
 - Download kafka .tgz file from https://kafka.apache.org/downloads
 - Untar the file and go into the kafka directory
 - Start the zookeeper server
