@@ -38,3 +38,9 @@ pip install kafka-python
   - Update_database.py : creates and updates the database containing people informations and interactions.
   - Producer.py : send message to consumer when interaction with infected people.
   - Consumer.py : see messages and their destinators
+
+## Sources
+How to build real-time streaming data pipelines and applications using Apache kafka ?
+- https://www.cloudiqtech.com/how-to-build-real-time-streaming-data-pipelines-and-applications-using-apache-kafka/
+Kafka-Python explained in 10 lines of code
+- https://towardsdatascience.com/kafka-python-explained-in-10-lines-of-code-800e3e07dad1
