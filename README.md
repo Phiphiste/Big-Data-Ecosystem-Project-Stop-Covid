@@ -22,3 +22,19 @@ It may be a **technical project** that can be installing a stack of technologies
 ```
 bin/zookeeper-server-start.sh config/zooker.properties
 ```
+- Start the Kafka broker
+```
+bin/kafka-server-start.sh config/server.properties
+```
+- Create a topic
+```
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic stopcovid
+```
+- Install kafka-python package using python package manager
+```
+pip install kafka-python
+```
+- Now, we can run 4 scripts:
+  - update_database.py : creates and updates the database containing people informations and interactions.
+  - producer.py : compute interactions and send message to consumer when interaction with infected people.
+  - consumer.py : see messages and their destinators
