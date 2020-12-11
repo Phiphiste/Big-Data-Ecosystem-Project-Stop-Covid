@@ -10,9 +10,18 @@ It may be a **technical project** that can be installing a stack of technologies
 
 ## Objectives
 
-- Generate database with population informations (id, positions, phone number, health status).
-- Compute interactions and update health status
-- Set up data streaming with Kafka to notify probably infected people.
+The objective is to reproduce a kind of **"Stop Covid"** application, based on positions.
+
+A database is filled with **people positions**, **phone number** and **health status**. It is constantly update (randomly change a bit the positions of people). Then it checks if some people met and based on their health status, update each others status.
+
+List of possible health status:
+- **0: No problem**.
+- **1: Suspicious**
+- **2: Got the virus**
+
+Every interaction with someone "1" or "2" will lead to become a "1". And the person will be notified and asked to test herself.
+
+This schema is possible thanks a **data streaming pipeline made with Kafka made with Python**.
 
 ## Set up
 
@@ -34,10 +43,15 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 ```
 pip install kafka-python
 ```
-- Now, we can run the following scripts:
-  - Stop_covid.py : creates and updates the database containing people informations and interactions.
-  - Producer.py : send message to consumer when interaction with infected people.
-  - Consumer.py : see messages and their destinators
+- Now, we can run the following scripts in separeted terminals:
+  - Stop_covid.py : creates and updates the database containing people informations and suspicious interactions.
+  - Producer.py : send message to consumer when interaction with suspicious/infected people.
+  - Consumer.py : view sent messages
+```
+python Stop_covid.py # can stop by pressing CTLR-C
+python Producer.py
+python Consumer.py
+``` 
 
 ## Sources
 - How to build real-time streaming data pipelines and applications using Apache kafka ?
