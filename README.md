@@ -34,7 +34,7 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 ```
 pip install kafka-python
 ```
-- Now, we can run 4 scripts:
-  - update_database.py : creates and updates the database containing people informations and interactions.
-  - producer.py : compute interactions and send message to consumer when interaction with infected people.
-  - consumer.py : see messages and their destinators
+- Now, we can run the following scripts:
+  - Update_database.py : creates and updates the database containing people informations and interactions.
+  - Producer.py : send message to consumer when interaction with infected people.
+  - Consumer.py : see messages and their destinators
