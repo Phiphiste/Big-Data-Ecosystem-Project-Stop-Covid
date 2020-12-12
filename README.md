@@ -33,7 +33,7 @@ sudo apt install default-jre
 - Untar the file and go into the kafka directory
 - Start the zookeeper server
 ```
-bin/zookeeper-server-start.sh config/zooker.properties
+bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 - Start the Kafka broker
 ```
