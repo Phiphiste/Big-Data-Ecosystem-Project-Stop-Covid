@@ -92,7 +92,7 @@ def update_health_status(people_id):
 def add_notification(people_id):
     cursor.execute("SELECT people_id, phone_nb, health_status FROM people WHERE people_id = {}".format(people_id))
     result = cursor.fetchone()
-    with open('inputmsg.txt', 'a') as f:
+    with open('msg_queue.txt', 'a') as f:
         f.write(str(result[0]) + ' ' + str(result[1]) + ' ' + str(result[2]) + '\n')
         f.close()
 
