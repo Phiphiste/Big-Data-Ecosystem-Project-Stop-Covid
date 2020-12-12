@@ -44,7 +44,7 @@ def create_database(size):
 
     for i in range(1,db_size):
         people_id = i
-        phone_nb = random.randint(33600000000,33699999999)
+        phone_nb = random.randint(33600000000,33799999999)
         pos_x = random.randint(0,100)
         pos_y = random.randint(0,100)
         random_health = random.randint(0,20)
@@ -98,3 +98,4 @@ try:
 except KeyboardInterrupt:
     pass
 
+connection.close()
