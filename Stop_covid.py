@@ -101,6 +101,9 @@ def update_all_health_status():
     cursor.execute("SELECT A.* FROM people A INNER JOIN (SELECT pos_x, pos_y FROM people GROUP BY pos_x, pos_y HAVING COUNT(*) > 1) B ON A.pos_x = B.pos_x AND A.pos_y = B.pos_y ")
     results = cursor.fetchall()
     for i in range(len(results)):
+    	# check only first one
+    	# need to change to verify that at least
+    	# one of them is 1 or 2
         if results[i][4] == 0:
             print(results[i])
             new_list = list(results[i])
