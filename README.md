@@ -57,6 +57,9 @@ python Producer.py
 python Consumer.py
 ``` 
 
+When Stop_covid.py is running it will never stop updating positions of people. If two people have same position, if one of them is 1 or 2 and the other 0, then the second one become 1.Then a msg is add to the msg_queue.txt file and the Producer can now send a message to the consumer.
+You can send messages with Producer.py and verify receptions with Consumer.py.
+
 ## Sources
 - How to build real-time streaming data pipelines and applications using Apache kafka ?
   - https://www.cloudiqtech.com/how-to-build-real-time-streaming-data-pipelines-and-applications-using-apache-kafka/
