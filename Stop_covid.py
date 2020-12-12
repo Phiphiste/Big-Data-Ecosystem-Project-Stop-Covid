@@ -17,15 +17,9 @@ people(people_id INTEGER PRIMARY KEY,
 phone_nb INTEGER, 
 pos_x INTEGER, 
 pos_y INTEGER, 
-health_state INTEGER)"""
+health_status INTEGER)"""
 cursor.execute(command1)
 
-# create interactions table with IDs of people
-command2 = """CREATE TABLE IF NOT EXISTS
-interactions(interaction_id INTEGER PRIMARY KEY,
-people1_id INTEGER,
-people2_id INTEGER)"""
-cursor.execute(command2)
 
 # Create Database
 def create_database(size):
@@ -88,13 +82,45 @@ for i in range(1,100):
         if yes => other one is 1
 '''
 
-#delete_table("people")
+def update_health_status(people_id):
+    cursor.execute("UPDATE people SET health_status = 1 WHERE people_id = {}".format(people_id))
+    # un-comment to verify update
+    #cursor.execute("SELECT * FROM people WHERE people_id = {}".format(people_id))
+    #result = cursor.fetchone()
+    #print(result)
+
+def add_notification(people_id):
+    cursor.execute("SELECT people_id, phone_nb, health_status FROM people WHERE people_id = {}".format(people_id))
+    result = cursor.fetchone()
+    with open('inputmsg.txt', 'a') as f:
+        f.write(str(result[0]) + ' ' + str(result[1]) + ' ' + str(result[2]) + '\n')
+        f.close()
+
+
+def update_all_health_status():
+    cursor.execute("SELECT A.* FROM people A INNER JOIN (SELECT pos_x, pos_y FROM people GROUP BY pos_x, pos_y HAVING COUNT(*) > 1) B ON A.pos_x = B.pos_x AND A.pos_y = B.pos_y ")
+    results = cursor.fetchall()
+    for i in range(len(results)):
+        if results[i][4] == 0:
+            print(results[i])
+            new_list = list(results[i])
+            new_list[4] = 1
+            print(new_list)
+            update_health_status(new_list[0])
+            add_notification(new_list[0])
+            
+delete_table("people")
 create_database(100)
 get_all_people(10)
 
 try:
+    i = 0
     while(True):
+        print("---------------- Loop #" + str(i) + "--------------------")
         update_all_positions()
+        update_all_health_status()
+        print("---------------- END LOOP --------------------------------\n\n")
+        i+=1
 except KeyboardInterrupt:
     pass
 

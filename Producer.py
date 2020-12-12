@@ -1,7 +1,7 @@
 from kafka import KafkaProducer
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
-with open('inputmsg.txt') as f:
-
+with open('inputmsg.txt', 'r') as f:
+	next(f)
 	for line in f:
 		words = line.split()
 		destinator_id = words[0].encode('utf-8')
