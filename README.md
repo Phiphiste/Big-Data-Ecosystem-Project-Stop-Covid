@@ -29,6 +29,10 @@ This schema is possible thanks a **data streaming pipeline made with Kafka made 
 ```
 sudo apt install default-jre
 ```
+- If you do not have yet installed kafka-python, you can use python package manager:
+```
+pip install kafka-python
+```
 - Download kafka .tgz file from https://kafka.apache.org/downloads
 - Untar the file and go into the kafka directory
 - Start the zookeeper server
@@ -43,10 +47,7 @@ bin/kafka-server-start.sh config/server.properties
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic stopcovid
 ```
-- Install kafka-python package using python package manager
-```
-pip install kafka-python
-```
+
 - Now, we can run the following scripts in separeted terminals:
   - Stop_covid.py : creates and updates the database containing people informations and suspicious interactions.
   - Producer.py : send message to consumer when interaction with suspicious/infected people.
@@ -59,6 +60,12 @@ python Consumer.py
 
 When Stop_covid.py is running it will never stop updating positions of people. If two people have same position, if one of them is 1 or 2 and the other 0, then the second one become 1.Then a msg is add to the msg_queue.txt file and the Producer can now send a message to the consumer.
 You can send messages with Producer.py and verify receptions with Consumer.py.
+
+If you have any issues running this program, feel free to contact the authors.
+
+## Authors
+- Philippe RAMBAUD | philippe.rambaud@edu.ece.fr
+- Jean LEROY | jean.leroy@edu.ece.fr
 
 ## Sources
 - How to build real-time streaming data pipelines and applications using Apache kafka ?
